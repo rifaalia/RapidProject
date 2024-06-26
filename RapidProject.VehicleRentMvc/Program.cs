@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using RapidProject.VehicleRentMvc.DAL.Repositories;
+using RapidProject.VehicleRentMvc.DAL.Services;
 using RapidProject.VehicleRentMvc.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,9 @@ var projectDb = builder.Configuration.GetConnectionString("projectDB");
 builder.Services.AddDbContext<RentVehicleDbContext>(options =>
     options.UseSqlServer(projectDb)
 );
+
+builder.Services.AddScoped<IVehicleRepository, VehicleService>();
+builder.Services.AddScoped<IVehicleTypeRepository, VehicleTypeService>();
 
 var app = builder.Build();
 

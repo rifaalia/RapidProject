@@ -2,7 +2,8 @@
 
 namespace RapidProject.VehicleRentMvc.DAL.Repositories
 {
-    public interface IVehicleImageRepository : IRepository<VehicleImage>
+    public interface IVehicleTypeRepository : IRepository<VehicleType>
     {
+        
     }
 }

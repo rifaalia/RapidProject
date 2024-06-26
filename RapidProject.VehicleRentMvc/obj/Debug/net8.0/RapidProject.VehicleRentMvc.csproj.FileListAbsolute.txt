@@ -135,3 +135,5 @@ C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\obj\Debug\
 C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\obj\Debug\net8.0\RapidProject.VehicleRentMvc.pdb
 C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\obj\Debug\net8.0\RapidProject.VehicleRentMvc.genruntimeconfig.cache
 C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\obj\Debug\net8.0\ref\RapidProject.VehicleRentMvc.dll
+C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\bin\Debug\net8.0\efpt.config.json
+C:\Users\HP\source\repos\RapidProject.git\RapidProject.VehicleRentMvc\bin\Debug\net8.0\Dapper.dll

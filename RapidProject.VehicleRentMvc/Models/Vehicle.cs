@@ -35,14 +35,5 @@ public partial class Vehicle
 
     public int AvailabilityStatus { get; set; }
 
-    [InverseProperty("Vehicle")]
-    public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
-
-    [ForeignKey("VehicleId")]
-    [InverseProperty("Vehicle")]
-    public virtual VehicleImage VehicleNavigation { get; set; }
-
-    [ForeignKey("VehicleTypeId")]
-    [InverseProperty("Vehicles")]
-    public virtual VehicleType VehicleType { get; set; }
+    public VehicleType VehicleType { get; set; }
 }

@@ -22,15 +22,4 @@ public partial class Rental
     public DateOnly ReturnDate { get; set; }
 
     public byte Status { get; set; }
-
-    [InverseProperty("Rental")]
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
-
-    [ForeignKey("UserId")]
-    [InverseProperty("Rentals")]
-    public virtual User User { get; set; }
-
-    [ForeignKey("VehicleId")]
-    [InverseProperty("Rentals")]
-    public virtual Vehicle Vehicle { get; set; }
 }

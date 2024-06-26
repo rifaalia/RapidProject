@@ -18,7 +18,4 @@ public partial class VehicleType
     [StringLength(10)]
     [Unicode(false)]
     public string VehicleType1 { get; set; }
-
-    [InverseProperty("VehicleType")]
-    public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

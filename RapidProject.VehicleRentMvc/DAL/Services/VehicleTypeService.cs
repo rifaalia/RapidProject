@@ -4,23 +4,24 @@ using RapidProject.VehicleRentMvc.Models;
 
 namespace RapidProject.VehicleRentMvc.DAL.Services
 {
-    public class VehiclesImageService : IVehicleImageRepository
+    public class VehicleTypeService : IVehicleTypeRepository
     {
         private readonly RentVehicleDbContext _db;
-        
 
-        public VehiclesImageService(RentVehicleDbContext db)
+        public VehicleTypeService(RentVehicleDbContext db)
         {
             _db = db;
         }
-        public async Task Add(VehicleImage entity)
+
+        public async Task Add(VehicleType entity)
         {
             try
             {
-                await _db.VehicleImages.AddAsync(entity);
+                await _db.VehicleTypes.AddAsync(entity);
                 await _db.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
+            (Exception ex) 
             {
                 throw new Exception(ex.Message);
             }
@@ -30,22 +31,10 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
         {
             try
             {
-                var image = await GetById(id);
-                _db.VehicleImages.Remove(image);
-                await _db.SaveChangesAsync();
-            }
-            catch(Exception ex) 
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+                var vehicleType = await GetById(id);
 
-        public async Task<IEnumerable<VehicleImage>> GetAll()
-        {
-            try
-            {
-                var images = await _db.VehicleImages.ToListAsync();
-                return images;
+                _db.VehicleTypes.Remove(vehicleType);
+                await _db.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -53,16 +42,31 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
             }
         }
 
-        public async Task<VehicleImage> GetById(int id)
+        public async Task<IEnumerable<VehicleType>> GetAll()
         {
             try
             {
-                var getImage = await _db.VehicleImages.FirstOrDefaultAsync(x => x.VehicleId == id);
-                if (getImage == null)
+                var vehicleTypes = await _db.VehicleTypes.ToListAsync();
+
+                return vehicleTypes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<VehicleType> GetById(int id)
+        {
+            try
+            {
+                var vehicleType = await _db.VehicleTypes.FirstOrDefaultAsync(x => x.VehicleTypeId == id);
+                if (vehicleType == null)
                 {
-                    throw new Exception("Gambar tidak ditemukan");
+                    throw new Exception("Tipe Kendaraan tidak ditemukan");
                 }
-                return getImage;
+
+                return vehicleType;
             }
             catch (Exception ex)
             {
@@ -70,22 +74,19 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
             }
         }
 
-        public async Task<VehicleImage> Update(VehicleImage entity)
+        public async Task<VehicleType> Update(VehicleType entity)
         {
             try
             {
-                var image = await GetById(entity.VehicleId);
-                image.ImageURL = entity.ImageURL ?? image.ImageURL;
-                image.ImageName = entity.ImageName ?? image.ImageName;
+                var vehicleType = await GetById(entity.VehicleTypeId);
+                vehicleType.VehicleType1 = entity.VehicleType1 ?? vehicleType.VehicleType1;
 
                 await _db.SaveChangesAsync();
-
-                return image;
+                return vehicleType;
             }
             catch (Exception ex)
             {
-
-            throw new Exception(ex.Message); 
+                throw new Exception(ex.Message);
             }
         }
     }

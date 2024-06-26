@@ -25,9 +25,11 @@ public partial class User
 
     public byte Role { get; set; }
 
-    [InverseProperty("User")]
-    public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+    [StringLength(50)]
+    [Unicode(false)]
+    public string FullName { get; set; }
 
-    [InverseProperty("User")]
-    public virtual UserProfile UserProfile { get; set; }
+    [StringLength(15)]
+    [Unicode(false)]
+    public string PhoneNumber { get; set; }
 }

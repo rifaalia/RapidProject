@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RapidProject.VehicleRentMvc.DAL.Repositories;
 using RapidProject.VehicleRentMvc.Models;
 using System.Diagnostics;
 
@@ -6,21 +7,17 @@ namespace RapidProject.VehicleRentMvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IVehicleRepository _vehicleRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IVehicleRepository vehicleRepository)
         {
-            _logger = logger;
+            _vehicleRepository = vehicleRepository;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult<Vehicle>> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var vehicles = await _vehicleRepository.GetVehicleAvailable();
+            return View(vehicles);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

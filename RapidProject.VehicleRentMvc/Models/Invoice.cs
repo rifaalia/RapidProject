@@ -24,12 +24,4 @@ public partial class Invoice
 
     [Column(TypeName = "datetime")]
     public DateTime? InvoiceDate { get; set; }
-
-    [ForeignKey("InvoiceId")]
-    [InverseProperty("Invoices")]
-    public virtual Payment InvoiceNavigation { get; set; }
-
-    [ForeignKey("RentalId")]
-    [InverseProperty("Invoices")]
-    public virtual Rental Rental { get; set; }
 }

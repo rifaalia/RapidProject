@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 namespace RapidProject.VehicleRentMvc.Models;
 
 [PrimaryKey("PaymentId", "InvoiceId")]
-[Index("InvoiceId", Name = "UQ__Payments__D796AAB41150DDF3", IsUnique = true)]
 public partial class Payment
 {
     [Key]
@@ -25,7 +24,4 @@ public partial class Payment
 
     [Column(TypeName = "datetime")]
     public DateTime? InvoiceDate { get; set; }
-
-    [InverseProperty("InvoiceNavigation")]
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }
