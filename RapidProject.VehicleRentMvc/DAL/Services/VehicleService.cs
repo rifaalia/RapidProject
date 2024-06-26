@@ -128,5 +128,21 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<Vehicle> UpdateStatus(int id)
+        {
+            var updateStatus = await _db.Vehicles.FirstOrDefaultAsync(x => x.VehicleId == id);
+            if(updateStatus.AvailabilityStatus == 1)
+            {
+                updateStatus.AvailabilityStatus = 0;
+            }
+            else
+            {
+                updateStatus.AvailabilityStatus = 1;
+            }
+            await _db.SaveChangesAsync();
+            return updateStatus;
+            
+        }
     }
 }

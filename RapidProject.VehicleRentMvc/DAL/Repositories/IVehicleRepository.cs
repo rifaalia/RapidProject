@@ -7,5 +7,6 @@ namespace RapidProject.VehicleRentMvc.DAL.Repositories
         Task<IEnumerable<Vehicle>> GetVehiclesByMake(string make);
         Task<IEnumerable<Vehicle>> GetAllVehiclesByType(string typeName);
         Task<IEnumerable<Vehicle>> GetVehicleAvailable();
+        Task<Vehicle> UpdateStatus(int id);
     }
 }

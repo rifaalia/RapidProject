@@ -2,6 +2,7 @@
 using RapidProject.VehicleRentMvc.DAL.Repositories;
 using RapidProject.VehicleRentMvc.DAL.Services;
 using RapidProject.VehicleRentMvc.Models;
+using RapidProject.VehicleRentMvc.ViewModels;
 using System.Threading.Tasks;
 
 namespace RapidProject.VehicleRentMvc.Controllers
@@ -10,11 +11,15 @@ namespace RapidProject.VehicleRentMvc.Controllers
     {
         private readonly IVehicleRepository _vehicleService;
         private readonly IVehicleTypeRepository _vehicleTypeService;
+        private readonly IRentRepository _rentService;
 
-        public VehicleController(IVehicleRepository vehicleService, IVehicleTypeRepository vehicleTypeService)
+        public VehicleController(IVehicleRepository vehicleService,
+            IVehicleTypeRepository vehicleTypeService,
+            IRentRepository rentService)
         {
             _vehicleService = vehicleService;
             _vehicleTypeService = vehicleTypeService;
+            _rentService = rentService;
         }
 
         public async Task<IActionResult> Index()
@@ -31,7 +36,42 @@ namespace RapidProject.VehicleRentMvc.Controllers
             {
                 return NotFound();
             }
-            return View(vehicle);
+
+            var rentalViewModel = new RentalViewModel
+            {
+                VehicleId = vehicle.VehicleId,
+                VehicleMake = vehicle.Make,
+                VehicleModel = vehicle.Model
+            };
+
+            return View(rentalViewModel);
+        }
+
+        [HttpPost("/vehicle/{id}")]
+        public async Task<IActionResult> Details(RentalViewModel rentalViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (rentalViewModel.RentalStartDate >= rentalViewModel.RentalEndDate)
+                {
+                    ModelState.AddModelError(string.Empty, "Rental start date must be before the end date.");
+                    return View(rentalViewModel);
+                }
+
+                var rental = new Rental
+                {
+                    VehicleId = rentalViewModel.VehicleId,
+                    UserId = rentalViewModel.UserId,
+                    RentalDate = rentalViewModel.RentalStartDate,
+                    ReturnDate = rentalViewModel.RentalEndDate
+                };
+
+                await _rentService.Add(rental);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(rentalViewModel);
         }
 
         public async Task<IActionResult> Create()
