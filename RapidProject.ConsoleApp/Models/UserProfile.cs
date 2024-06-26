@@ -8,23 +8,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RapidProject.ConsoleApp.Models;
 
-public partial class Rental
+public partial class UserProfile
 {
-    public int RentalId { get; set; }
-
     public int UserId { get; set; }
 
-    public int VehicleId { get; set; }
+    public string FirstName { get; set; }
 
-    public DateOnly RentalDate { get; set; }
+    public string LastName { get; set; }
 
-    public DateOnly ReturnDate { get; set; }
-
-    public byte Status { get; set; }
-
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+    public string PhoneNumber { get; set; }
 
     public virtual User User { get; set; }
-
-    public virtual Vehicle Vehicle { get; set; }
 }

@@ -7,32 +7,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace RapidProject.ConsoleApp.Models;
-
 public partial class Vehicle
 {
-    [Key]
-    [Column("VehicleID")]
     public int VehicleId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    [Unicode(false)]
+    public int VehicleTypeId { get; set; }
+
     public string Make { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    [Unicode(false)]
     public string Model { get; set; }
 
-    public int Year { get; set; }
+    public string Year { get; set; }
 
-    [Column(TypeName = "money")]
     public decimal RentalPrice { get; set; }
 
     public int AvailabilityStatus { get; set; }
 
-    public int VehicleTypeId { get; set; }
+    public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 
-    public VehicleType? VehicleType { get; set; }
-    
+    public virtual VehicleType VehicleType { get; set; }
 }

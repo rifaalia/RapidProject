@@ -46,6 +46,19 @@
           }
         }
       },
+      "ConsoleTables/2.6.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/ConsoleTables.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/ConsoleTables.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Dapper/2.1.35": {
         "type": "package",
         "compile": {
@@ -1649,6 +1662,21 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "ConsoleTables/2.6.1": {
+      "sha512": "TyU885plpk88kMxgayy5+QQvtt/t3ZR45+vSvaKqZiaK+YsGVE6Mv7sV3fwjUMv3jHT15DdkpxW/+o+uc+bAJQ==",
+      "type": "package",
+      "path": "consoletables/2.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Readme.md",
+        "consoletables.2.6.1.nupkg.sha512",
+        "consoletables.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/ConsoleTables.dll",
+        "lib/netstandard2.1/ConsoleTables.pdb"
       ]
     },
     "Dapper/2.1.35": {
@@ -4420,6 +4448,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "ConsoleTables >= 2.6.1",
       "Dapper >= 2.1.35",
       "Microsoft.EntityFrameworkCore >= 8.0.6",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.6",
@@ -4429,19 +4458,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
       "projectName": "RapidProject.ConsoleApp",
-      "projectPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
+      "projectPath": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4473,6 +4502,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "ConsoleTables": {
+            "target": "Package",
+            "version": "[2.6.1, )"
+          },
           "Dapper": {
             "target": "Package",
             "version": "[2.1.35, )"
@@ -4518,7 +4551,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -8,17 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RapidProject.ConsoleApp.Models;
 
-[Table("VehicleType")]
 public partial class VehicleType
 {
-    [Key]
     public int VehicleTypeId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    [Unicode(false)]
-    public string VehicleTypeName { get; set; }
+    public string VehicleType1 { get; set; }
 
-    // Properti Koleksi Navigasi
-    public ICollection<Vehicle> Vehicles { get; set; }
+    public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

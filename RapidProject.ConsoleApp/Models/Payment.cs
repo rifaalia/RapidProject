@@ -10,14 +10,13 @@ namespace RapidProject.ConsoleApp.Models;
 
 public partial class Payment
 {
-    [Key]
-    [Column("PaymentID")]
     public int PaymentId { get; set; }
 
-    [Column("InvoiceID")]
-    public int InvoiceId { get; set; }
+    public string InvoiceId { get; set; }
 
-    public int Amount { get; set; }
+    public decimal? Amount { get; set; }
 
-    public DateOnly PaymentDate { get; set; }
+    public DateTime? InvoiceDate { get; set; }
+
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {}
+    "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {}
   },
   "projects": {
-    "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {
+    "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
         "projectName": "RapidProject.ConsoleApp",
-        "projectPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
+        "projectPath": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Downloads\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ConsoleTables": {
+              "target": "Package",
+              "version": "[2.6.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
@@ -91,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
