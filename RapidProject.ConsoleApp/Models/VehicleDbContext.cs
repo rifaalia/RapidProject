@@ -12,15 +12,6 @@ public partial class VehicleDbContext : DbContext
         : base(options)
     {
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer("Server=127.0.0.1,1435;Database=VehicleDb;uid=sa;pwd=Password#123;TrustServerCertificate=True;");
-    }
-  
-
-
-    public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Invoice> Invoices { get; set; }
 
@@ -28,22 +19,139 @@ public partial class VehicleDbContext : DbContext
 
     public virtual DbSet<Rental> Rentals { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserProfile> UserProfiles { get; set; }
+
     public virtual DbSet<Vehicle> Vehicles { get; set; }
 
     public virtual DbSet<VehicleType> VehicleTypes { get; set; }
 
-    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSqlServer("Server=127.0.0.1,1435;Database=VehicleDb;uid=sa;pwd=Password#123;TrustServerCertificate=True;");
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Vehicle>().HasKey(v => v.VehicleId);
-        modelBuilder.Entity<VehicleType>().HasKey(vt => vt.VehicleTypeId);
+        modelBuilder.Entity<Invoice>(entity =>
+        {
+            entity.HasKey(e => new { e.InvoiceId, e.RentalId }).HasName("PK__Invoices__FEE6AF214255B2E6");
 
-        // Definisikan Relasi
-        modelBuilder.Entity<Vehicle>()
-            .HasOne(v => v.VehicleType)
-            .WithMany(vt => vt.Vehicles)
-            .HasForeignKey(v => v.VehicleTypeId)
-            .OnDelete(DeleteBehavior.Restrict);
+            entity.Property(e => e.InvoiceId)
+                .HasMaxLength(25)
+                .IsUnicode(false);
+            entity.Property(e => e.Amount).HasColumnType("money");
+            entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
+
+            entity.HasOne(d => d.InvoiceNavigation).WithMany(p => p.Invoices)
+                .HasPrincipalKey(p => p.InvoiceId)
+                .HasForeignKey(d => d.InvoiceId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Invoices_Payments");
+
+            entity.HasOne(d => d.Rental).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.RentalId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Invoices_Rentals");
+        });
+
+        modelBuilder.Entity<Payment>(entity =>
+        {
+            entity.HasKey(e => new { e.PaymentId, e.InvoiceId }).HasName("PK__Payments__D62C00936703D8A9");
+
+            entity.HasIndex(e => e.InvoiceId, "UQ__Payments__D796AAB4957603C4").IsUnique();
+
+            entity.Property(e => e.PaymentId).ValueGeneratedOnAdd();
+            entity.Property(e => e.InvoiceId)
+                .HasMaxLength(25)
+                .IsUnicode(false);
+            entity.Property(e => e.Amount).HasColumnType("money");
+            entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Rental>(entity =>
+        {
+            entity.HasOne(d => d.User).WithMany(p => p.Rentals)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Rentals_Users");
+
+            entity.HasOne(d => d.Vehicle).WithMany(p => p.Rentals)
+                .HasForeignKey(d => d.VehicleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Rentals_Vehicles");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(25)
+                .IsUnicode(false);
+            entity.Property(e => e.Password)
+                .IsRequired()
+                .HasMaxLength(25)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<UserProfile>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+
+            entity.ToTable("UserProfile");
+
+            entity.Property(e => e.UserId).ValueGeneratedNever();
+            entity.Property(e => e.FirstName)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LastName)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(15)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.User).WithOne(p => p.UserProfile)
+                .HasForeignKey<UserProfile>(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UserProfile_Users");
+        });
+
+        modelBuilder.Entity<Vehicle>(entity =>
+        {
+            entity.Property(e => e.Make)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Model)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.RentalPrice).HasColumnType("money");
+            entity.Property(e => e.Year)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.VehicleType).WithMany(p => p.Vehicles)
+                .HasForeignKey(d => d.VehicleTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Vehicles_VehicleTypes");
+        });
+
+        modelBuilder.Entity<VehicleType>(entity =>
+        {
+            entity.Property(e => e.VehicleType1)
+                .IsRequired()
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("VehicleType");
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }
