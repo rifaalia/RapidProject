@@ -17,6 +17,7 @@ builder.Services.AddDbContext<RentVehicleDbContext>(options =>
 builder.Services.AddScoped<IVehicleRepository, VehicleService>();
 builder.Services.AddScoped<IVehicleTypeRepository, VehicleTypeService>();
 builder.Services.AddScoped<IRentRepository, RentalService>();
+builder.Services.AddScoped<IInvoiceRepository, InvoiceService>();
 
 var app = builder.Build();
 

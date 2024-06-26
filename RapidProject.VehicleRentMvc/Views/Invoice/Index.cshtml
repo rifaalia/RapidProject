@@ -1,0 +1,50 @@
+﻿@model RapidProject.VehicleRentMvc.Models.Invoice
+
+@{
+    ViewData["Title"] = "Invoice Details";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Invoice Details</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Invoice ID: @Model.InvoiceId</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Customer Name</dt>
+                        <dd class="col-sm-9">@Model.Rental.User.FullName</dd>
+
+                        <dt class="col-sm-3">Phone Number</dt>
+                        <dd class="col-sm-9">@Model.Rental.User.PhoneNumber</dd>
+
+                        <dt class="col-sm-3">Vehicle</dt>
+                        <dd class="col-sm-9">@Model.Rental.Vehicle.Model @Model.Rental.Vehicle.Make (@Model.Rental.Vehicle.Year)</dd>
+
+                        <dt class="col-sm-3">Vehicle Type</dt>
+                        <dd class="col-sm-9">@Model.Rental.Vehicle.VehicleType.VehicleType1</dd>
+
+                        <dt class="col-sm-3">Rental Date</dt>
+                        <dd class="col-sm-9">@Model.Rental.RentalDate.ToString("yyyy-MM-dd")</dd>
+
+                        <dt class="col-sm-3">Return Date</dt>
+                        <dd class="col-sm-9">@Model.Rental.RentalDate.ToString("yyyy-MM-dd")</dd>
+
+                        <dt class="col-sm-3">Amount</dt>
+                        <dd class="col-sm-9">@($"Rp {Model.Amount:N0}")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-right">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

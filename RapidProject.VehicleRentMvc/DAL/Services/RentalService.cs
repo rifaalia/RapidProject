@@ -7,9 +7,11 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
     public class RentalService : IRentRepository
     {
         private readonly RentVehicleDbContext _db;
-        public RentalService(RentVehicleDbContext db)
+        private readonly IInvoiceRepository _invoiceService;
+        public RentalService(RentVehicleDbContext db, IInvoiceRepository invoiceService)
         {
             _db = db;
+            _invoiceService = invoiceService;
         }
         public async Task Add(Rental entity)
         {
@@ -22,8 +24,21 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
             };
             try
             {
+                
                 await _db.Rentals.AddAsync(newRent);
                 await _db.SaveChangesAsync();
+
+                var vehicle = await _db.Vehicles.FindAsync(newRent.VehicleId);
+                var rentalDays = (newRent.ReturnDate - newRent.RentalDate).Days;
+                var newInvoice = new Invoice
+                {
+                    RentalId = newRent.RentalId,
+                    Amount = newRent.Vehicle.RentalPrice * rentalDays,
+
+                };
+                await _invoiceService.Add(newInvoice);
+                await _db.SaveChangesAsync();
+                
             }
             catch (Exception ex)
             {

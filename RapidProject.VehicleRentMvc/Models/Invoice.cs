@@ -24,4 +24,6 @@ public partial class Invoice
 
     [Column(TypeName = "datetime")]
     public DateTime? InvoiceDate { get; set; }
+
+    public Rental Rental { get; set; }
 }
