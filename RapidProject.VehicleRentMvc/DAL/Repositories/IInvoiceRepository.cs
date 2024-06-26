@@ -2,7 +2,8 @@
 
 namespace RapidProject.VehicleRentMvc.DAL.Repositories
 {
-    public interface IVehicleImageRepository : IRepository<VehicleImage>
+    public interface IInvoiceRepository : IRepository<Invoice>
     {
+       Task<Invoice> GetByRentalId(int rentalId);
     }
 }

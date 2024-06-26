@@ -1,0 +1,53 @@
+﻿@model RapidProject.VehicleRentMvc.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Create Vehicle";
+}
+
+<h2>Create Vehicle</h2>
+
+<h4>Vehicle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Make" class="control-label"></label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentalPrice" class="control-label"></label>
+                <input asp-for="RentalPrice" class="form-control" />
+                <span asp-validation-for="RentalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailabilityStatus" class="control-label"></label>
+                <input asp-for="AvailabilityStatus" class="form-control" />
+                <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleTypeId" class="control-label"></label>
+                <select asp-for="VehicleTypeId" class="form-control" asp-items="@(new SelectList(ViewBag.VehicleTypes, "VehicleTypeId", "VehicleType1"))"></select>
+                <span asp-validation-for="VehicleTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

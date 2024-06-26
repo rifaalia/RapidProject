@@ -8,10 +8,6 @@ namespace RapidProject.VehicleRentMvc.Models;
 
 public partial class RentVehicleDbContext : DbContext
 {
-    public RentVehicleDbContext()
-    {
-        
-    }
     public RentVehicleDbContext(DbContextOptions<RentVehicleDbContext> options)
         : base(options)
     {
@@ -25,11 +21,7 @@ public partial class RentVehicleDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<UserProfile> UserProfiles { get; set; }
-
     public virtual DbSet<Vehicle> Vehicles { get; set; }
-
-    public virtual DbSet<VehicleImage> VehicleImages { get; set; }
 
     public virtual DbSet<VehicleType> VehicleTypes { get; set; }
 
@@ -38,16 +30,6 @@ public partial class RentVehicleDbContext : DbContext
         modelBuilder.Entity<Invoice>(entity =>
         {
             entity.HasKey(e => new { e.InvoiceId, e.RentalId }).HasName("PK__Invoices__FEE6AF214255B2E6");
-
-            entity.HasOne(d => d.InvoiceNavigation).WithMany(p => p.Invoices)
-                .HasPrincipalKey(p => p.InvoiceId)
-                .HasForeignKey(d => d.InvoiceId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Invoices_Payments");
-
-            entity.HasOne(d => d.Rental).WithMany(p => p.Invoices)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Invoices_Rentals");
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -55,44 +37,6 @@ public partial class RentVehicleDbContext : DbContext
             entity.HasKey(e => new { e.PaymentId, e.InvoiceId }).HasName("PK__Payments__D62C009326502C43");
 
             entity.Property(e => e.PaymentId).ValueGeneratedOnAdd();
-        });
-
-        modelBuilder.Entity<Rental>(entity =>
-        {
-            entity.HasOne(d => d.User).WithMany(p => p.Rentals)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Rentals_Users");
-
-            entity.HasOne(d => d.Vehicle).WithMany(p => p.Rentals)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Rentals_Vehicles");
-        });
-
-        modelBuilder.Entity<UserProfile>(entity =>
-        {
-            entity.Property(e => e.UserId).ValueGeneratedNever();
-
-            entity.HasOne(d => d.User).WithOne(p => p.UserProfile)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_UserProfile_Users");
-        });
-
-        modelBuilder.Entity<Vehicle>(entity =>
-        {
-            entity.Property(e => e.VehicleId).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.VehicleNavigation).WithOne(p => p.Vehicle)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Vehicles_VehicleImage");
-
-            entity.HasOne(d => d.VehicleType).WithMany(p => p.Vehicles)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Vehicles_VehicleTypes");
-        });
-
-        modelBuilder.Entity<VehicleImage>(entity =>
-        {
-            entity.Property(e => e.VehicleId).ValueGeneratedNever();
         });
 
         OnModelCreatingPartial(modelBuilder);

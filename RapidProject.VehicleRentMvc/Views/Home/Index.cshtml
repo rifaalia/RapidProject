@@ -1,8 +1,52 @@
-﻿@{
+﻿@model IEnumerable<RapidProject.VehicleRentMvc.Models.Vehicle>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Available Vehicles</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Merk
+                </th>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Tahun
+                </th>
+                <th>
+                    Price / Day
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Make
+                    </td>
+                    <td>
+                        @item.Model
+                    </td>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @($"Rp {item.RentalPrice:N0}")
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Vehicle" asp-route-id="@item.VehicleId">Rent</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
