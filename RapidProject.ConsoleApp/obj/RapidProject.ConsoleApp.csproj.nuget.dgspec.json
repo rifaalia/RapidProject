@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\RapidProject\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {}
+    "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\RapidProject\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {
+    "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\RapidProject\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+        "projectUniqueName": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
         "projectName": "RapidProject.ConsoleApp",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\RapidProject\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
+        "projectPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\RapidProject.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\RapidProject\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
+        "outputPath": "D:\\RapidTechLatihan\\code-team\\RapidProject\\RapidProject.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,36 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
