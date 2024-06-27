@@ -18,6 +18,7 @@ builder.Services.AddScoped<IVehicleRepository, VehicleService>();
 builder.Services.AddScoped<IVehicleTypeRepository, VehicleTypeService>();
 builder.Services.AddScoped<IRentRepository, RentalService>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceService>();
+builder.Services.AddScoped<IUserRepository, UsersService>();
 
 var app = builder.Build();
 

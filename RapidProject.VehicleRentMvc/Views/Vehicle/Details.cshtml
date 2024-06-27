@@ -8,18 +8,18 @@
 
 <form asp-action="Details" method="post">
     <div class="form-group">
-        <label asp-for="UserId" class="control-label">User ID</label>
-        <input asp-for="UserId" class="form-control" />
+        <label asp-for="UserId" class="control-label">User</label>
+        <select asp-for="UserId" class="form-control" asp-items="@(new SelectList(ViewBag.User, "UserId", "FullName"))"></select>
         <span asp-validation-for="UserId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="RentalStartDate" class="control-label">Rental Start Date</label>
-        <input asp-for="RentalStartDate" class="form-control" type="date" />
+        <input asp-for="RentalStartDate" class="form-control" type="date" autocomplete="on"/>
         <span asp-validation-for="RentalStartDate" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="RentalEndDate" class="control-label">Rental End Date</label>
-        <input asp-for="RentalEndDate" class="form-control" type="date" />
+        <input asp-for="RentalEndDate" class="form-control" type="date" autocomplete="on    "/>
         <span asp-validation-for="RentalEndDate" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="VehicleId" />

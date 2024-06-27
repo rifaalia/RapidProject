@@ -68,10 +68,6 @@ namespace RapidProject.VehicleRentMvc.DAL.Services
             {
                 var vehicle = await _db.Vehicles.FirstOrDefaultAsync(x => x.VehicleId == id);
 
-                if (vehicle == null)
-                {
-                    throw new Exception("Kendaraan tidak ditemukan");
-                }
                 return vehicle;
             }
             catch (Exception ex)

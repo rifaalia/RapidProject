@@ -1,0 +1,40 @@
+﻿@* @model IEnumerable<RapidProject.VehicleRentMvc.Models.Payment>
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Payment Details</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Payment ID: @Model.</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Invoice ID</dt>
+                        <dd class="col-sm-9">@Model.</dd>
+
+                        <dt class="col-sm-3">Amount</dt>
+                        <dd class="col-sm-9">@($"Rp {Model.Amount:N0}")</dd>
+
+                        <dt class="col-sm-3">Invoice Date</dt>
+                        <dd class="col-sm-9">@Model.InvoiceDate.ToString("yyyy-MM-dd")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-right">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ *@

@@ -12,14 +12,17 @@ namespace RapidProject.VehicleRentMvc.Controllers
         private readonly IVehicleRepository _vehicleService;
         private readonly IVehicleTypeRepository _vehicleTypeService;
         private readonly IRentRepository _rentService;
+        private readonly IUserRepository _userService;
 
         public VehicleController(IVehicleRepository vehicleService,
             IVehicleTypeRepository vehicleTypeService,
-            IRentRepository rentService)
+            IRentRepository rentService,
+            IUserRepository userService)
         {
             _vehicleService = vehicleService;
             _vehicleTypeService = vehicleTypeService;
             _rentService = rentService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -32,6 +35,7 @@ namespace RapidProject.VehicleRentMvc.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var vehicle = await _vehicleService.GetById(id);
+            
             if (vehicle == null)
             {
                 return NotFound();
@@ -43,6 +47,8 @@ namespace RapidProject.VehicleRentMvc.Controllers
                 VehicleMake = vehicle.Make,
                 VehicleModel = vehicle.Model
             };
+
+            ViewBag.User = await _userService.GetAll();
 
             return View(rentalViewModel);
         }
@@ -68,12 +74,13 @@ namespace RapidProject.VehicleRentMvc.Controllers
 
                 await _rentService.Add(rental);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(rentalViewModel);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.VehicleTypes = await _vehicleTypeService.GetAll();
