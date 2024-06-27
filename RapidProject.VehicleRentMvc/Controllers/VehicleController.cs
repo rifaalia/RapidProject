@@ -100,7 +100,6 @@ namespace RapidProject.VehicleRentMvc.Controllers
             return View(vehicle);
         }
 
-        [HttpGet("/Vehicle/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             var vehicle = await _vehicleService.GetById(id);
