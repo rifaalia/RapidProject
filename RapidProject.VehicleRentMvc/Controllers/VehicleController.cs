@@ -138,7 +138,7 @@ namespace RapidProject.VehicleRentMvc.Controllers
             return View(vehicle);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Vehicle/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
