@@ -4,13 +4,13 @@
     ViewData["Title"] = "Edit Vehicle";
 }
 
-<h2>Create Vehicle</h2>
+<h2>Edit Vehicle @Model.Model</h2>
 
 <h4>Vehicle</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" asp-controller="Vehicle">
             <div class="form-group">
                 <label asp-for="Make" class="control-label"></label>
                 <input asp-for="Make" class="form-control" />

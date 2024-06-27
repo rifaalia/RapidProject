@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RapidProject.VehicleRentMvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b4e30d9f646a4997c41ff9ddc682c922f4a1bfa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91ae2f255d2f89190a6607d42468fb10b61e06be")]
 [assembly: System.Reflection.AssemblyProductAttribute("RapidProject.VehicleRentMvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RapidProject.VehicleRentMvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

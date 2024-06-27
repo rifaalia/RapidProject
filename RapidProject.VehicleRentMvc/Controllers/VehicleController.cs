@@ -80,14 +80,14 @@ namespace RapidProject.VehicleRentMvc.Controllers
             return View(rentalViewModel);
         }
 
-        [HttpGet]
+        [HttpGet("/Vehicle/Create")]
         public async Task<IActionResult> Create()
         {
             ViewBag.VehicleTypes = await _vehicleTypeService.GetAll();
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("/Vehicle/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vehicle vehicle)
         {
@@ -100,6 +100,7 @@ namespace RapidProject.VehicleRentMvc.Controllers
             return View(vehicle);
         }
 
+        [HttpGet("/Vehicle/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             var vehicle = await _vehicleService.GetById(id);
@@ -111,7 +112,7 @@ namespace RapidProject.VehicleRentMvc.Controllers
             return View(vehicle);
         }
 
-        [HttpPost]
+        [HttpPost("/Vehicle/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Vehicle vehicle)
         {
